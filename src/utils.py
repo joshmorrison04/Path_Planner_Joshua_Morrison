@@ -11,6 +11,8 @@ def trace_path(cell, graph):
     # Reverse the path since it is from goal to start at this point.
     path.reverse()
     return path
+# ^ Builds the final path from goal back to start using parents (purple path)
+# Basically follow breadcrumbs from goal back to start, then flip it
 
 
 def generate_plan_file(graph, start, goal, path, algo="", out_name="out.planner"):
@@ -32,6 +34,7 @@ def generate_plan_file(graph, start, goal, path, algo="", out_name="out.planner"
         "goal": [goal.i, goal.j],
         "planning_algo": algo
     }
+# ^ takes everything and write it into out.planner as JSON, which the nav app reads. 
 
     with open(out_name, 'w') as outfile:
         json.dump(plan, outfile)
